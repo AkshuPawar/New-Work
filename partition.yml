@@ -1,0 +1,11 @@
+---
+- name : "partition"
+  hosts : web
+  tasks :
+    - name : "create partition "
+      parted:
+        device : /dev/xvdf
+        number : 2
+        state : present
+...
+
