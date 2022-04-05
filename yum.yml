@@ -1,0 +1,20 @@
+---
+- name : "Install packages"
+  hosts : web
+  tasks :
+    - name : " install httpd "
+      yum :
+        name : httpd
+        state : latest
+
+    - name : " Host a page "
+      copy :
+        src: /root/ansible/index.html
+        dest: /var/www/html/index.html
+
+    - name : " Restart the service "
+      service :
+        name : httpd
+        state : restarted
+...
+
