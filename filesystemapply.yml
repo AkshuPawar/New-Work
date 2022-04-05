@@ -1,0 +1,21 @@
+---
+- name : "partition"
+  hosts : web
+  tasks :
+    - name : "create partition "
+      parted:
+        device : /dev/xvdf
+        number : 2
+        state : present
+    - name : "apply file system "
+      filesystem :
+        fstype : ext2
+        dev : /dev/xvdf1
+    - name : "apply mounting "
+      mount :
+        fstype : ext2
+        src : /dev/xvdf1
+        path : /mnt
+        state : mounted
+...
+
